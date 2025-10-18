@@ -4,12 +4,11 @@
   .input {
     @apply w-full rounded-full border border-stone-300 bg-white px-4 py-2 text-sm transition-all duration-300 placeholder:text-stone-400 focus:ring focus:ring-indigo-400 focus:outline-none md:px-6 md:py-3;
   }
-}
 
-.loader {
-  width: 45px;
+  .loader {
+  width: 100px;
   aspect-ratio: 0.75;
-  --c: no-repeat linear-gradient(#333 0 0);
+  --c: no-repeat linear-gradient(theme(--color-stone-800) 0 0);
   background:
     var(--c) 0% 50%,
     var(--c) 50% 50%,
@@ -44,3 +43,6 @@
       100% 100%;
   }
 }
+
+}
+
