@@ -1,8 +1,24 @@
+import { useDispatch } from "react-redux";
 import Button from "../../ui/Button.jsx";
 import { formatCurrency } from "../../utils/helpers.js";
+import { addItem } from "../cart/cartSlice.js";
 
 function MenuItem({ pizza }) {
   const { id, name, unitPrice, ingredients, soldOut, imageUrl } = pizza;
+
+  const dispatch = useDispatch();
+
+  function handleAddCart() {
+    const newItem = {
+      pizzaId: id,
+      name,
+      quantity: 1,
+      unitPrice,
+      totalPrice: unitPrice * 1,
+    };
+
+    dispatch(addItem(newItem));
+  }
 
   return (
     <li className="flex gap-4 py-2">
@@ -11,9 +27,11 @@ function MenuItem({ pizza }) {
         alt={name}
         className={`h-24 ${soldOut ? "opacity-70 grayscale" : ""}`}
       />
-      <div className="flex flex-col grow pt-1">
+      <div className="flex grow flex-col pt-1">
         <p className="font-medium">{name}</p>
-        <p className="text-sm italic text-stone-500 capitalize">{ingredients.join(", ")}</p>
+        <p className="text-sm text-stone-500 capitalize italic">
+          {ingredients.join(", ")}
+        </p>
         <div className="mt-auto flex items-center justify-between">
           {!soldOut ? (
             <p className="text-sm">{formatCurrency(unitPrice)}</p>
@@ -22,7 +40,11 @@ function MenuItem({ pizza }) {
               Sold out
             </p>
           )}
-		  <Button type="small">Add to cart</Button>
+          {!soldOut && (
+            <Button onClick={handleAddCart} type="small">
+              Add to cart
+            </Button>
+          )}
         </div>
       </div>
     </li>
