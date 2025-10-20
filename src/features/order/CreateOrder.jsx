@@ -1,17 +1,22 @@
 import { Form, useActionData, useNavigation } from "react-router";
 import Button from "../../ui/Button.jsx";
 import { useSelector } from "react-redux";
-import { getCart } from "../cart/cartSlice.js";
+import { getCart, getTotalPizzaPrice } from "../cart/cartSlice.js";
 import EmptyCart from "../cart/EmptyCart.jsx";
+import { formatCurrency } from "../../utils/helpers.js";
+import { useState } from "react";
 
 function CreateOrder() {
-  // const [withPriority, setWithPriority] = useState(false);
+  const [withPriority, setWithPriority] = useState(false);
   const navigation = useNavigation();
 
   const formErrors = useActionData();
   const username = useSelector((state) => state.user.username);
   const isSubmitting = navigation.state === "submitting";
   const cart = useSelector(getCart);
+  const totalCartPrice = useSelector(getTotalPizzaPrice);
+  const priorityPrice = withPriority ? totalCartPrice*0.2 : 0;
+  const total = totalCartPrice + priorityPrice;
 
   if (!cart.length) return <EmptyCart />;
 
@@ -61,8 +66,8 @@ function CreateOrder() {
             type="checkbox"
             name="priority"
             id="priority"
-            // value={withPriority}
-            // onChange={(e) => setWithPriority(e.target.checked)}
+            value={withPriority}
+            onChange={(e) => setWithPriority(e.target.checked)}
           />
           <label htmlFor="priority" className="font-medium">
             Want to yo give your order priority?
@@ -72,7 +77,7 @@ function CreateOrder() {
         <div>
           <input type="hidden" name="cart" value={JSON.stringify(cart)} />
           <Button type="primary" disabled={isSubmitting}>
-            {isSubmitting ? "Placing Order" : "Order now"}
+            {isSubmitting ? "Placing Order" : `Order now for ${formatCurrency(total)}`}
           </Button>
         </div>
       </Form>

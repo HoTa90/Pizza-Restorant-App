@@ -7,10 +7,10 @@ import { clearCart } from "../features/cart/cartSlice.js";
 export async function orderAction({ request }) {
 	const formData = await request.formData();
 	const data = Object.fromEntries(formData);
+
 	const order = {
 		...data,
 		cart: JSON.parse(data.cart),
-		priority: data.priority === "on",
 	};
 
 	const errors = {};
