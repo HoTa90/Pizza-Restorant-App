@@ -1,5 +1,6 @@
 import { Form, useActionData, useNavigation } from "react-router";
 import Button from "../../ui/Button.jsx";
+import { useSelector } from "react-redux";
 
 const fakeCart = [
   {
@@ -30,6 +31,7 @@ function CreateOrder() {
   const navigation = useNavigation();
 
   const formErrors = useActionData();
+  const username = useSelector((state) => state.user.username);
   const isSubmitting = navigation.state === "submitting";
   const cart = fakeCart;
 
@@ -40,7 +42,7 @@ function CreateOrder() {
       <Form method="POST">
         <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center">
           <label className="sm:basis-40">First Name</label>
-          <input type="text" name="customer" required className="input grow" />
+          <input type="text" name="customer" required className="input grow" defaultValue={username} />
         </div>
 
         <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center">
@@ -48,7 +50,7 @@ function CreateOrder() {
           <div className="grow">
             <input type="tel" name="phone" required className="input w-full" />
             {formErrors?.phone && (
-              <p className="mt-2 ml-1 font-bold text-xs text-red-700">
+              <p className="mt-2 ml-1 text-xs font-bold text-red-700">
                 {formErrors.phone}
               </p>
             )}
