@@ -1,14 +1,17 @@
 import { Form, useActionData, useNavigation } from "react-router";
 import Button from "../../ui/Button.jsx";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getCart, getTotalPizzaPrice } from "../cart/cartSlice.js";
 import EmptyCart from "../cart/EmptyCart.jsx";
 import { formatCurrency } from "../../utils/helpers.js";
 import { useState } from "react";
+import { fetchAddress } from "../user/userSlice.js";
 
 function CreateOrder() {
   const [withPriority, setWithPriority] = useState(false);
   const navigation = useNavigation();
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user)
 
   const formErrors = useActionData();
   const username = useSelector((state) => state.user.username);
@@ -17,12 +20,14 @@ function CreateOrder() {
   const totalCartPrice = useSelector(getTotalPizzaPrice);
   const priorityPrice = withPriority ? totalCartPrice*0.2 : 0;
   const total = totalCartPrice + priorityPrice;
-
+console.log(user)
   if (!cart.length) return <EmptyCart />;
 
   return (
     <div className="px-4 py-6">
       <h2 className="mb-8 text-xl font-semibold">Ready to order? Let's go!</h2>
+
+	  <button className="py-4 px-4 bg-yellow-500" onClick={() => dispatch(fetchAddress())}>Get address</button>
 
       <Form method="POST">
         <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center">
