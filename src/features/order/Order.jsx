@@ -8,6 +8,7 @@ import {
 } from "../../utils/helpers";
 import OrderItem from "./OrderItem.jsx";
 import { useEffect } from "react";
+import UpdateOrder from "./UpdateOrder.jsx";
 
 function Order() {
   // Everyone can search for all orders, so for privacy reasons we're gonna gonna exclude names or address, these are only for the restaurant staff
@@ -62,8 +63,10 @@ function Order() {
           <OrderItem
             item={item}
             key={item.pizzaId}
-            ingredients={fetcher.data?.find((el) => el.id === item.pizzaId).ingredients}
-			isLoadingIngredients={fetcher.state === "loading"}
+            ingredients={
+              fetcher.data?.find((el) => el.id === item.pizzaId).ingredients
+            }
+            isLoadingIngredients={fetcher.state === "loading"}
           />
         ))}
       </ul>
@@ -81,6 +84,7 @@ function Order() {
           To pay on delivery: {formatCurrency(orderPrice + priorityPrice)}
         </p>
       </div>
+      {!priority && <UpdateOrder order={order} />}
     </div>
   );
 }
