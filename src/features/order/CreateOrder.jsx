@@ -11,7 +11,6 @@ function CreateOrder() {
   const [withPriority, setWithPriority] = useState(false);
   const navigation = useNavigation();
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.user);
 
   const formErrors = useActionData();
   const {
@@ -28,7 +27,7 @@ function CreateOrder() {
   const totalCartPrice = useSelector(getTotalPizzaPrice);
   const priorityPrice = withPriority ? totalCartPrice * 0.2 : 0;
   const total = totalCartPrice + priorityPrice;
-  console.log(user);
+
   if (!cart.length) return <EmptyCart />;
 
   return (

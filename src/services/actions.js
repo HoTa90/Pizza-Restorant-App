@@ -5,26 +5,26 @@ import store from "../store.js";
 import { clearCart } from "../features/cart/cartSlice.js";
 
 export async function orderAction({ request }) {
-	const formData = await request.formData();
-	const data = Object.fromEntries(formData);
+  const formData = await request.formData();
+  const data = Object.fromEntries(formData);
 
-	const order = {
-		...data,
-		cart: JSON.parse(data.cart),
-	};
-	console.log(order)
-	const errors = {};
-	if (!isValidPhone(order.phone)) {
-		errors.phone = "Please add a correct phone number!";
-	}
+  const order = {
+    ...data,
+    cart: JSON.parse(data.cart),
+  };
 
-	if (Object.keys(errors).length > 0) {
-		return errors;
-	}
+  const errors = {};
+  if (!isValidPhone(order.phone)) {
+    errors.phone = "Please add a correct phone number!";
+  }
 
-	const newOrder = await createOrder(order);
+  if (Object.keys(errors).length > 0) {
+    return errors;
+  }
 
-	store.dispatch(clearCart())
+  const newOrder = await createOrder(order);
 
-	return redirect(`/order/${newOrder.id}`);
+  store.dispatch(clearCart());
+
+  return redirect(`/order/${newOrder.id}`);
 }
