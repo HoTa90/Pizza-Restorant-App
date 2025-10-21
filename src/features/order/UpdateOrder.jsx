@@ -1,16 +1,19 @@
 import { useFetcher } from "react-router";
 import Button from "../../ui/Button.jsx";
-import { updateOrder } from "../../services/apiRestaurant.js";
 
-function UpdateOrder({ order }) {
+function UpdateOrder() {
   const fetcher = useFetcher();
+
+  const isLoading =
+    fetcher.state === "submitting" || fetcher.state === "loading";
 
   return (
     <fetcher.Form method="POST" className="text-right">
-      <Button type={"primary"}>Make Priority</Button>
+      <Button type={"primary"}>
+        {isLoading ? "Updating your order..." : "Make Priority"}
+      </Button>
     </fetcher.Form>
   );
 }
-
 
 export default UpdateOrder;
