@@ -12,7 +12,7 @@ export async function orderAction({ request }) {
 		...data,
 		cart: JSON.parse(data.cart),
 	};
-
+	console.log(order)
 	const errors = {};
 	if (!isValidPhone(order.phone)) {
 		errors.phone = "Please add a correct phone number!";
