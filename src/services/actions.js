@@ -29,7 +29,7 @@ export async function orderAction({ request }) {
   return redirect(`/order/${newOrder.id}`);
 }
 
-export async function updateOrderAction({ request, params }) {
+export async function updateOrderAction({ _, params }) {
   const data = { priority: true };
   const { orderId } = params;
 

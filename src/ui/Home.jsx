@@ -6,15 +6,21 @@ function Home() {
   const username = useSelector((state) => state.user.username);
 
   return (
-    <div className="my-10 text-center sm:my-16">
-      <h1 className="mb-8 px-4 text-xl font-semibold text-stone-700 md:text-3xl">
+    <div className="my-10 text-center sm:my-16 ">
+      <h1 className="mb-8 px-4 text-xl font-semibold text-stone-200 md:text-3xl">
         The best pizza.
         <br />
-        <span className="text-indigo-600">
+        <span className="text-indigo-400">
           Straight out of the oven, straight to you.
         </span>
       </h1>
-      {username=== "" ? <CreateUser /> : <Button to={"/menu"} type={"primary"}>Continue ordering, {username}</Button>}
+      {username === "" ? (
+        <CreateUser />
+      ) : (
+        <Button to={"/menu"} type={"primary"}>
+          Continue ordering, {username}
+        </Button>
+      )}
     </div>
   );
 }
