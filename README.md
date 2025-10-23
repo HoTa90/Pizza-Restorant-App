@@ -1,16 +1,53 @@
-# React + Vite
+# 🍕 Pizza Restaurant App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple web application where users can order pizza and track their order status in real time.  
+This project was built to practice modern React development concepts like **React Router Data APIs**, **Redux Toolkit (with Thunk middleware)**, and **Tailwind CSS** for styling.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Project Overview
 
-## React Compiler
+This app simulates an online pizza ordering experience:
+- Browse a menu of pizzas
+- Add or remove pizzas from the cart
+- Submit an order
+- Track your order
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+The focus of this project is **learning**, not production readiness.
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🧰 Technologies Used
+
+- **React 19**
+- **React Router 7** (loaders, actions, data fetching)
+- **Redux Toolkit** (state management)
+- **Thunk middleware** (async actions)
+- **Tailwind CSS 4** (via `@tailwindcss/vite`)
+- **Vite 7** (development & build tool)
+
+---
+
+## 🎯 Learning Goals
+
+- Practice working with **React Router’s data APIs** (`loaders`, `actions`)
+- Manage global state using **Redux Toolkit slices**
+- Handle async operations with **thunk middleware**
+- Build responsive layouts using **Tailwind CSS**
+- Configure a clean development environment with **Vite**, **ESLint**, and **Prettier**
+
+---
+
+## 🛠️ Installation & Setup
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/yourusername/pizza-restorant-app.git
+   cd pizza-restorant-app
+2. **Install dependancies**
+   ```bash
+   npm i
+3. **Run Project**
+   ```bash
+   npm run dev
+
